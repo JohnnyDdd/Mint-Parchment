@@ -1,3 +1,5 @@
+//import { GoogleGenAi } from "@google/genai"; Yet to replace
+
 const outputEl = document.getElementById("output");
 const initBtn = document.getElementById("initBtn");
 const startBtn = document.getElementById("startBtn");
@@ -7,7 +9,7 @@ const noteBtn = document.getElementById("noteBtn");
 const nb = document.getElementById("notes");
 
 function initHistory() {
-    
+
     userData = JSON.parse(localStorage.getItem("userData")) || {
         Topics: [],
         UserNotes: [],
@@ -16,7 +18,7 @@ function initHistory() {
 
     const sideNav = document.getElementById("mySidenav");
     const sideBottom = document.getElementById("appIcon");
-    
+
     const start = Math.max(0, userData.Topics.length - 5);
 
     for (let i = start; i < userData.Topics.length; i++) {
@@ -91,14 +93,14 @@ let userData = JSON.parse(localStorage.getItem("userData")) || {
     JN: []
 };
 
-initBtn.addEventListener("click",async() => {
+initBtn.addEventListener("click", async () => {
     let availability = await LanguageModel.availability();
-    while (availability !== "available"){
+    while (availability !== "available") {
         outputEl.textContent = "Checking if Prompt API is available...";
-        if (availability == "unavailable"){
+        if (availability == "unavailable") {
             outputEl.textContent = "Prompt API is unavailable :(";
             return;
-        } else if( availability === "downloadable" || availability === "downloading"){
+        } else if (availability === "downloadable" || availability === "downloading") {
             outputEl.textContent = "Downloading Prompt API...";
         }
         await new Promise(resolve => setTimeout(resolve, 1000));
@@ -109,12 +111,13 @@ initBtn.addEventListener("click",async() => {
     outputEl.textContent = "Prompt API available. Creating session..."
     // Create session with output language
     session = await LanguageModel.create({
-        initialPrompts:[
+        initialPrompts: [
             {
-                role:'system',
-                content:'You are a knowledgable researcher',
+                role: 'system',
+                content: 'You are a knowledgable researcher',
             },
-            {   role: 'assistant', 
+            {
+                role: 'assistant',
                 content: 'In a short jot note, you will search and give a list of key subtopics related to the topic that I want to explore. Use bullet points and single-colored text, short phrases only, include only short definitions. Ignore minor details and examples.',
             },
         ],
@@ -126,7 +129,7 @@ initBtn.addEventListener("click",async() => {
         ]
     });
     init = true;
-    if (init){
+    if (init) {
         outputEl.textContent = "Session Created! \nWrite down topics you want to explore :)";
         initBtn.style.display = "none";
         pmt.placeholder = "Your topic goes here :)";
@@ -135,7 +138,7 @@ initBtn.addEventListener("click",async() => {
 })
 
 async function handleSubmit() {
-    if (initBtn.style.display !== "none"){
+    if (initBtn.style.display !== "none") {
         outputEl.innerHTML = "You have to instantiate the Prompt API before using this application :)";
         return;
     }
@@ -158,8 +161,8 @@ async function handleSubmit() {
 
     const sidenav = document.getElementById("mySidenav");
     const chatHead = document.getElementById("chatHeader");
-    
-    const index = userData.Topics.length-1;
+
+    const index = userData.Topics.length - 1;
     chatHistory.onclick = () => navHistory(index);
     sidenav.insertBefore(chatHistory, chatHead.nextSibling);
 
@@ -168,7 +171,7 @@ async function handleSubmit() {
 
 }
 
-function navHistory(index){
+function navHistory(index) {
     console.log("clicked", index);
     console.log("rendered:", renderJotNotes(userData.JN[index]));
     outputEl.innerHTML = `<ul>${renderJotNotes(userData.JN[index])}</ul>`;
@@ -186,12 +189,12 @@ pmt.addEventListener("keydown", (e) => {
 
 noteBtn.addEventListener("click", () => {
     // Show the notebox with initial text
-    if (nb.style.display == "flex"){
+    if (nb.style.display == "flex") {
         noteBtn.innerHTML = "Open Notes";
         nb.style.display = "none";
         return;
     }
-    else{
+    else {
         nb.style.display = "flex";
         noteBtn.innerHTML = "Save Notes and Close";
         noteBtn.onclick = () => {
@@ -202,7 +205,7 @@ noteBtn.addEventListener("click", () => {
             nb.style.color = "#aaa"; // grey for placeholder effect
         }
     }
-    
+
 });
 
 
@@ -216,9 +219,9 @@ nb.addEventListener("focus", () => {
     }
 });
 
-pmt.addEventListener("focus",() => {
-    if (pmt.value === "Provide your prompt here..."){
-        pmt.value ="";
+pmt.addEventListener("focus", () => {
+    if (pmt.value === "Provide your prompt here...") {
+        pmt.value = "";
         pmt.style.color = "#fff";
     }
 })
