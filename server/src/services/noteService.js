@@ -21,4 +21,4 @@ export async function generateNote(input) {
     return response.text;
 }
 
-console.log(await generateNote("Hypoglycemia"));
+//console.log(await generateNote("Hypoglycemia"));
