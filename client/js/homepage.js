@@ -1,5 +1,3 @@
-//import { GoogleGenAi } from "@google/genai"; Yet to replace
-
 const outputEl = document.getElementById("output");
 //const initBtn = document.getElementById("initBtn");
 const startBtn = document.getElementById("startBtn");
