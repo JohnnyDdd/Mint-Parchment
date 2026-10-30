@@ -5,15 +5,20 @@ const noteBtn = document.getElementById("noteBtn");
 const nb = document.getElementById("notes");
 
 startBtn.addEventListener("click", async () => {
-    const pmt = document.getElementById("promptBox").innerHTML;
+    const pmt = document.getElementById("promptBox").value;
 
-    const note = await fetch("http://localhost:3000/api/generate", {
+    const response = await fetch("/api/generate", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({ prompt: pmt })
     })
-    const data = await note.json();
+    const data = await response.json();
+
+    if (!response.ok) {
+        console.error("Generate failed:", data.error);
+        return;
+    }
     console.log(data.notes);
 })
