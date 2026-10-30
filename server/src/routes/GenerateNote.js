@@ -3,14 +3,21 @@ import { generateNote } from "../services/noteService.js";
 
 const router = express.Router();
 
-router.get("/generate", (req, res) => {
-    const { prompt } = req.body();
+router.post("/generate", async (req, res) => {
+    try {
+        const { input } = req.body;
 
-    const notes = generateNote(prompt);
+        const notes = await generateNote(input);
 
-    console.log(result);
+        console.log(notes);
 
-    res.json({ result });
+        res.json({ notes });
+    } catch (error) {
+        console.error("GENERATION ERROR:", error);
+        res.status(500).json({
+            error: error.message
+        });
+    }
 });
 
 export default router;

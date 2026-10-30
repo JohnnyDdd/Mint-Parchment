@@ -1,7 +1,5 @@
 //import { GoogleGenAi } from "@google/genai"; Yet to replace
 
-import { response, text } from "express";
-
 const outputEl = document.getElementById("output");
 //const initBtn = document.getElementById("initBtn");
 const startBtn = document.getElementById("startBtn");
@@ -16,13 +14,8 @@ startBtn.addEventListener("click", async () => {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            input: pmt
-        })
+        body: JSON.stringify({ prompt: pmt })
     })
-
-    const data = await response.json();
-
-    console.log(data.message);
-
+    const data = await note.json();
+    console.log(data.notes);
 })
