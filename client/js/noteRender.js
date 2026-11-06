@@ -1,3 +1,4 @@
+const outputEl = document.getElementById("output");
 export function render(jotNotes) {
     const lines = jotNotes.split("\n");
     let html = "";
@@ -35,5 +36,6 @@ export function render(jotNotes) {
 
     if (inList) html += "</ul>";
 
-    return html;
+    outputEl.innerHTML = html;
+    return
 }

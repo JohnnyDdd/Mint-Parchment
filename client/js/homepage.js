@@ -1,4 +1,5 @@
-const outputEl = document.getElementById("output");
+import { render } from "./noteRender.js";
+//const outputEl = document.getElementById("output");
 //const initBtn = document.getElementById("initBtn");
 const startBtn = document.getElementById("startBtn");
 const noteBtn = document.getElementById("noteBtn");
@@ -20,5 +21,5 @@ startBtn.addEventListener("click", async () => {
         console.error("Generate failed:", data.error);
         return;
     }
-    outputEl.textContent = data.notes;
+    render(data.notes);
 })
