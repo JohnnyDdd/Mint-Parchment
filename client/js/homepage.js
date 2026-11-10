@@ -21,5 +21,5 @@ startBtn.addEventListener("click", async () => {
         console.error("Generate failed:", data.error);
         return;
     }
-    render(data.notes);
+    render(input, data.notes);
 })

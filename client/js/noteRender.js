@@ -1,7 +1,7 @@
 const outputEl = document.getElementById("note-container");
-export function render(jotNotes) {
+export function render(input, jotNotes) {
     const lines = jotNotes.split("\n");
-    let html = "";
+    let html = `<h2 style="margin-top:0.5em; color:#2c3e50;">${input.charAt(0).toUpperCase() + input.slice(1)}</h1>`;
     let inList = false;
 
     lines.forEach(line => {
