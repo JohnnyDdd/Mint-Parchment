@@ -1,0 +1,360 @@
+/* ========================================
+   Mint Parchment
+   ======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7f5;
+    color: #26332d;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ========================================
+   Side Navigation
+   ======================================== */
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+
+    background: #dce9e2;
+    overflow-x: hidden;
+
+    padding-top: 60px;
+
+    transition: width 0.3s ease;
+
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+}
+
+.sidenav a {
+    display: block;
+
+    padding: 12px 24px;
+
+    color: #26332d;
+    text-decoration: none;
+    font-size: 18px;
+
+    transition: background 0.2s ease;
+}
+
+.sidenav a:hover {
+    background: #cbded3;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+
+    font-size: 32px;
+    padding: 0;
+}
+
+#appIcon {
+    display: block;
+
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 30px;
+
+    object-fit: contain;
+}
+
+#chatHeader {
+    text-align: center;
+    margin: 20px 5% 0;
+}
+
+
+/* Navigation button */
+
+#NavBtn {
+    position: fixed;
+    top: 15px;
+    left: 18px;
+
+    z-index: 900;
+
+    font-size: 30px;
+    cursor: pointer;
+
+    color: #26332d;
+
+    user-select: none;
+}
+
+#NavBtn:hover {
+    color: #527766;
+}
+
+
+/* ========================================
+   Main Layout
+   ======================================== */
+
+#main {
+    flex: 1;
+
+    width: 100%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+    padding: 70px 30px 40px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+
+/* ========================================
+   Note Editor
+   ======================================== */
+
+.note-editor {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #d5dfda;
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Toolbar */
+
+.toolbar {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 10px;
+
+    background: #edf3ef;
+
+    border-bottom: 1px solid #d5dfda;
+}
+
+.toolbar button,
+.toolbar select {
+    height: 34px;
+
+    border: 1px solid #c8d4cd;
+    border-radius: 5px;
+
+    background: #ffffff;
+    color: #26332d;
+
+    cursor: pointer;
+
+    padding: 0 10px;
+
+    font-size: 14px;
+}
+
+.toolbar button:hover,
+.toolbar select:hover {
+    background: #e8f0eb;
+}
+
+.toolbar button:active {
+    background: #dce9e2;
+}
+
+.toolbar .primary {
+    background: #527766;
+    color: white;
+
+    border-color: #527766;
+}
+
+.toolbar .primary:hover {
+    background: #446555;
+}
+
+.toolbar .push {
+    margin-left: auto;
+}
+
+.sep {
+    width: 1px;
+    height: 24px;
+
+    background: #cbd5cf;
+
+    margin: 0 4px;
+}
+
+
+/* Editable note */
+
+#note-container {
+    min-height: 400px;
+
+    padding: 25px;
+
+    background: #fff;
+
+    outline: none;
+
+    font-size: 16px;
+    line-height: 1.6;
+
+    overflow-wrap: break-word;
+}
+
+#note-container:focus {
+    box-shadow: inset 0 0 0 2px #b8cec1;
+}
+
+#note-container:empty::before {
+    content: "Start writing your note...";
+
+    color: #9aa7a0;
+    pointer-events: none;
+}
+
+
+/* ========================================
+   Prompt Area
+   ======================================== */
+
+.container {
+    width: 100%;
+
+    display: flex;
+    gap: 10px;
+}
+
+#promptBox {
+    flex: 1;
+
+    min-height: 55px;
+    max-height: 180px;
+
+    resize: vertical;
+
+    padding: 15px;
+
+    border: 1px solid #cbd7d0;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #26332d;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    outline: none;
+}
+
+#promptBox:focus {
+    border-color: #789b88;
+
+    box-shadow: 0 0 0 2px rgba(82, 119, 102, 0.12);
+}
+
+#startBtn {
+    align-self: stretch;
+
+    padding: 0 22px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #527766;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+#startBtn:hover {
+    background: #446555;
+}
+
+#startBtn:active {
+    transform: translateY(1px);
+}
+
+
+/* ========================================
+   Footer
+   ======================================== */
+
+.site-footer {
+    padding: 18px;
+
+    text-align: center;
+
+    background: #e5eee9;
+    color: #64736b;
+
+    font-size: 13px;
+
+    border-top: 1px solid #d5dfda;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 700px) {
+
+    #main {
+        padding: 65px 15px 25px;
+    }
+
+    .toolbar {
+        flex-wrap: wrap;
+    }
+
+    .toolbar .push {
+        margin-left: 0;
+    }
+
+    #note-container {
+        min-height: 300px;
+        padding: 18px;
+    }
+
+    #promptCont {
+        flex-direction: column;
+    }
+
+    #startBtn {
+        min-height: 45px;
+    }
+}

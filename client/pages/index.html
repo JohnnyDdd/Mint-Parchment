@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <title>Mint Parchment</title>
   <link rel="icon" type="image/png" sizes="96x96" href="/assets/icons/favicon.png">
-  <link rel="stylesheet" href="/css/general.css">
-  <link rel="stylesheet" href="/css/home.css">
+  <link rel="stylesheet" href="/css/test.css">
   <script src="/js/general.js" defer></script>
   <script type="module" src="/js/homepage.js" defer></script>
 </head>
@@ -26,24 +25,39 @@
     <p id="chatHeader" style="text-align: center; margin-right: 5%;"><strong>Chat History</strong></p>
   </div>
 
-
   <div id="main">
-    <div class="container">
-      <div class="subcontainer" id="notes">
-        <textarea id="noteBox"></textarea>
+    <div class="note-editor">
+
+      <div class="toolbar" aria-label="Formatting">
+        <button data-cmd="bold" title="Bold (Ctrl + B)"><b>B</b></button>
+        <button data-cmd="italic" title="Italic (Ctrl + I)"><i>I</i></button>
+        <button data-cmd="underline" title="Underline (Ctrl + U)"><u>U</u></button>
+        <span class="sep"></span>
+        <select id="size" aria-label="Font size">
+          <option value="3">Normal</option>
+          <option value="2">Small</option>
+          <option value="5">Large</option>
+          <option value="6">Heading</option>
+        </select>
+        <button data-cmd="insertUnorderedList" title="Bulleted list">List</button>
+        <span class="sep"></span>
+        <button id="save" class="primary push">Save as .txt</button>
       </div>
-      <div id="output"></div>
+
+
+      <div id="note-container" contenteditable="true" spellcheck="true" aria-label="Note text"></div>
+
     </div>
 
     <div class="container" id="promptCont">
-      <textarea id="promptBox" placeholder="Press the top button to instantiate Prompt API"></textarea>
+      <textarea id="promptBox" placeholder="Start typing your prompts..."></textarea>
       <button id="startBtn">Send</button>
     </div>
 
   </div>
+  <footer class="site-footer">
+    <p>© 2026 Mint Parchment. All rights reserved.</p>
+  </footer>
 </body>
-<footer class="site-footer">
-  <p>© 2026 Mint Parchment. All rights reserved.</p>
-</footer>
 
 </html>

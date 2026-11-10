@@ -1,4 +1,4 @@
-const outputEl = document.getElementById("output");
+const outputEl = document.getElementById("note-container");
 export function render(jotNotes) {
     const lines = jotNotes.split("\n");
     let html = "";
